@@ -1,36 +1,208 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Moire Tech Website
 
-## Getting Started
+A production-ready website for Moire Tech built with Next.js 14, Tailwind CSS, and Framer Motion. Features a futuristic cyberpunk aesthetic with dark themes, glass morphism effects, and advanced animations.
 
-First, run the development server:
+![Moire Tech](public/logo.svg)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Features
+
+- **Next.js 14** with App Router and TypeScript
+- **Tailwind CSS** with custom brand design tokens
+- **Framer Motion** for advanced animations and transitions
+- **Particle.js** for interactive background effects
+- **Glass Morphism** UI design
+- **Dark Futuristic** aesthetic (Bloomberg Terminal meets Cyberpunk)
+- **Mobile Responsive** with hamburger navigation
+- **SEO Optimized** with metadata and sitemap
+- **Vultr Deployment Ready** with Docker & Nginx
+
+## 📁 Project Structure
+
+```
+moiretech-website/
+├── app/                    # Next.js app router pages
+│   ├── layout.tsx         # Root layout with fonts & metadata
+│   ├── page.tsx           # Homepage (all sections)
+│   └── globals.css        # Global styles & Tailwind config
+├── components/            # React components
+│   ├── Navbar.tsx         # Glass morphism navigation
+│   ├── Hero.tsx           # Full-viewport hero with particles
+│   ├── About.tsx          # Stats counters & company story
+│   ├── Services.tsx       # Three pillar services cards
+│   ├── Products.tsx       # Product showcase carousel
+│   ├── Training.tsx       # Cybersecurity training terminal
+│   ├── WhyUs.tsx          # Feature grid with animations
+│   ├── Contact.tsx        # Contact form & info
+│   ├── Footer.tsx         # Site footer
+│   ├── AIConcierge.tsx   # Ruflo AI assistant placeholder
+│   ├── ParticleBackground.tsx # Interactive particle background
+│   ├── AnimatedCounter.tsx   # Scroll-triggered counters
+│   └── TiltCard.tsx          # 3D tilt card component
+├── public/                # Static assets
+│   ├── logo.svg          # Moire Tech M logo
+│   ├── robots.txt        # SEO robots configuration
+│   └── sitemap.xml       # SEO sitemap
+├── deployment/           # Production deployment files
+│   ├── Dockerfile        # Node.js production Dockerfile
+│   ├── nginx.conf       # Nginx reverse proxy configuration
+│   ├── docker-compose.yml # Multi-container deployment
+│   └── .env.example      # Environment variables template
+└── package.json          # Dependencies & scripts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎨 Design System
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Colors
+```css
+brand-black:     #080808      /* Deep black background */
+brand-dark:      #0D0D1A      /* Dark navy accent */
+brand-blue:      #3B5EFF      /* Electric blue primary */
+brand-violet:    #7B2FFF      /* Purple secondary */
+brand-glow:      #5B8DFF      /* Glow/highlight color */
+brand-glass:     rgba(255,255,255,0.04) /* Glass morphism */
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Typography
+- **Headings**: Orbitron (futuristic, tech-focused)
+- **Body**: DM Sans (clean, readable)
 
-## Learn More
+### Animations
+- Particle mesh hero background
+- Typewriter text cycling
+- Scroll-triggered section reveals
+- 3D card tilt on hover
+- Number counter animations
+- Logo glow pulse effects
+- Button shimmer sweeps
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Installation & Development
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Clone repository**
+   ```bash
+   git clone https://github.com/moiretech/website.git
+   cd website
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-## Deploy on Vercel
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your configuration
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Run development server**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. **Build for production**
+   ```bash
+   npm run build
+   npm start
+   ```
+
+## 🐳 Docker Deployment (Vultr Ready)
+
+### Quick Start
+```bash
+# Build and run with Docker Compose
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop containers
+docker-compose down
+```
+
+### Production Deployment Steps
+1. **Build Docker image**
+   ```bash
+   docker build -t moiretech-website .
+   ```
+
+2. **Set environment variables**
+   ```bash
+   cp .env.example .env.production
+   # Configure production values
+   ```
+
+3. **Deploy with Docker Compose**
+   ```bash
+   docker-compose -f docker-compose.yml --env-file .env.production up -d
+   ```
+
+4. **Configure SSL** (optional)
+   - Place SSL certificates in `./ssl/` directory
+   - Update `nginx.conf` with SSL paths
+   - Uncomment SSL configuration in nginx.conf
+
+## 📈 SEO & Performance
+
+- **Metadata**: Open Graph, Twitter Cards, structured data
+- **Sitemap**: Auto-generated XML sitemap
+- **Robots.txt**: Custom crawler directives
+- **Performance**: Image optimization, code splitting
+- **Accessibility**: Semantic HTML, ARIA labels
+- **Analytics**: Google Analytics ready (add ID in .env)
+
+## 🔧 Technical Stack
+
+### Core
+- **Next.js 14** - React framework with App Router
+- **TypeScript** - Type-safe JavaScript
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **Framer Motion** - Animation library
+
+### Animations & Effects
+- **@tsparticles/react** - Particle background effects
+- **Lucide React** - Icon library
+- **React Icons** - Additional icon sets
+
+### Deployment
+- **Docker** - Containerization
+- **Nginx** - Reverse proxy & caching
+- **Node.js 20** - Runtime environment
+
+## 🎯 Pages & Sections
+
+1. **Hero Section** - Full-viewport with animated particles
+2. **About Section** - Stats counters & company story
+3. **Services Section** - Three pillar cards with 3D tilt
+4. **Products Section** - Horizontal showcase carousel
+5. **Training Section** - Terminal-style cybersecurity training
+6. **Why Us Section** - Feature grid with staggered animations
+7. **Contact Section** - Form with validation & social links
+8. **Footer** - Navigation, social links, legal info
+
+## 🤖 AI Integration (Phase 2)
+
+The site includes a placeholder **AI Concierge** button powered by **[Ruflo](https://github.com/ruvnet/ruflo)** multi-agent orchestration. This positions Moire Tech as forward-thinking in agentic AI technology.
+
+## 📄 License
+
+Copyright © 2026 Moire Tech. All rights reserved.
+
+## 🙏 Credits
+
+- Design: Inspired by Bloomberg Terminal & Cyberpunk aesthetics
+- Icons: Lucide React
+- Particles: tsparticles
+- Animations: Framer Motion
+- Fonts: Google Fonts (Orbitron, DM Sans)
+
+## 🆘 Support
+
+For technical issues or feature requests:
+- Create an issue on GitHub
+- Email: tech@moire.tech
+- Documentation: [docs.moire.tech](https://docs.moire.tech)
+
+---
+
+**Moire Tech** - Where Code Meets Defence 🛡️

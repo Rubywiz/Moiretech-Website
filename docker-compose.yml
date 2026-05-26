@@ -1,0 +1,112 @@
+version: '3.8'
+
+services:
+  # Next.js Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: moiretech-app
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./public:/app/public:ro
+      - ./logs:/app/logs
+    networks:
+      - moiretech-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.moiretech-app.rule=Host(`moire.tech`) || Host(`www.moire.tech`)"
+      - "traefik.http.routers.moiretech-app.entrypoints=web"
+      - "traefik.http.services.moiretech-app.loadbalancer.server.port=3000"
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: moiretech-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/ssl:ro
+      - ./logs/nginx:/var/log/nginx
+      - ./public:/usr/share/nginx/html:ro
+    depends_on:
+      - app
+    networks:
+      - moiretech-network
+    labels:
+      - "traefik.enable=false"
+
+  # Database (optional - for future expansion)
+  # postgres:
+  #   image: postgres:15-alpine
+  #   container_name: moiretech-db
+  #   restart: unless-stopped
+  #   environment:
+  #     - POSTGRES_DB=moiretech
+  #     - POSTGRES_USER=moiretech
+  #     - POSTGRES_PASSWORD=${DB_PASSWORD}
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - moiretech-network
+  #   ports:
+  #     - "5432:5432"
+
+  # Redis (optional - for caching)
+  # redis:
+  #   image: redis:alpine
+  #   container_name: moiretech-redis
+  #   restart: unless-stopped
+  #   command: redis-server --appendonly yes
+  #   volumes:
+  #     - redis_data:/data
+  #   networks:
+  #     - moiretech-network
+  #   ports:
+  #     - "6379:6379"
+
+  # Traefik (optional - for advanced routing and SSL)
+  # traefik:
+  #   image: traefik:v3.0
+  #   container_name: traefik
+  #   restart: unless-stopped
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+  #     - ./traefik.yml:/etc/traefik/traefik.yml:ro
+  #     - ./ssl:/etc/ssl:ro
+  #   networks:
+  #     - moiretech-network
+  #   labels:
+  #     - "traefik.enable=true"
+
+networks:
+  moiretech-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+# Environment variables (create .env file)
+# DB_PASSWORD=your_secure_password
+# NEXT_PUBLIC_API_URL=https://api.moire.tech
+# NODE_ENV=production

@@ -1,0 +1,52 @@
+# Moire Tech Website Robots.txt
+# Generated: ${new Date().toISOString().split('T')[0]}
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /_next/static/
+Disallow: /*.json$
+Disallow: /*.js$
+
+# Allow Googlebot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Allow Bingbot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+# Allow DuckDuckBot
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Disallow for certain bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: dotbot
+Disallow: /
+
+User-agent: rogerbot
+Disallow: /
+
+# Sitemap location
+Sitemap: https://moire.tech/sitemap.xml
+
+# Host
+Host: https://moire.tech
+
+# Crawl-delay for all other bots
+User-agent: *
+Crawl-delay: 3

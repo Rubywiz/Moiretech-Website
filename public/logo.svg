@@ -1,0 +1,34 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B5EFF" />
+      <stop offset="100%" stop-color="#7B2FFF" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="60" cy="60" r="55" fill="url(#gradient)" opacity="0.2" />
+  
+  <!-- M Letter Geometric Design -->
+  <path d="M30 30 L45 60 L60 45 L75 60 L90 30" stroke="url(#gradient)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" />
+  <path d="M30 90 L45 60 L60 75 L75 60 L90 90" stroke="url(#gradient)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" />
+  
+  <!-- Connecting Lines -->
+  <path d="M45 60 L60 45" stroke="url(#gradient)" stroke-width="4" stroke-linecap="round" />
+  <path d="M60 45 L75 60" stroke="url(#gradient)" stroke-width="4" stroke-linecap="round" />
+  <path d="M45 60 L60 75" stroke="url(#gradient)" stroke-width="4" stroke-linecap="round" />
+  <path d="M60 75 L75 60" stroke="url(#gradient)" stroke-width="4" stroke-linecap="round" />
+  
+  <!-- Center Dot -->
+  <circle cx="60" cy="60" r="4" fill="url(#gradient)" />
+  
+  <!-- Outer Ring -->
+  <circle cx="60" cy="60" r="58" stroke="url(#gradient)" stroke-width="1" stroke-dasharray="5 5" opacity="0.5" />
+</svg>

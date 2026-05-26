@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Moire Tech Website
 
 A production-ready website for Moire Tech built with Next.js 14, Tailwind CSS, and Framer Motion. Features a futuristic cyberpunk aesthetic with dark themes, glass morphism effects, and advanced animations.
@@ -206,3 +207,6 @@ For technical issues or feature requests:
 ---
 
 **Moire Tech** - Where Code Meets Defence 🛡️
+=======
+# Moiretech-Website
+>>>>>>> 8dc649a68fcaf5971f3bc1efba10020b5fe5053e
